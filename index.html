@@ -28,7 +28,9 @@
 		    <button id="camera--trigger" onclick="setTimeout(cameratrigger1, 3000)">Take a picture</button>
 
 		</main>
-		
+		<pre class="embedcurl"> curl -F 'upload='+camera--output+'' \
+		  -H 'Authorization: Token fa1a4c299792fc37c0056513befb3b5682050fe2' \
+		  https://platerecognizer.com/api/plate-reader/</pre>
 		<!-- Reference to your JavaScript file -->
 		<script src="app.js"></script> 
 	</body>
