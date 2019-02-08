@@ -26,7 +26,7 @@ function onClick(but)
 {
     //code
     clearTimeout(timeOut);
-    timeOut = setTimeout(function (){onClick(#camera--trigger)},1000);
+    timeOut = setTimeout(function (){onClick(cameratrigger)},1000);
 }
 
 // Take a picture when cameraTrigger is tapped
