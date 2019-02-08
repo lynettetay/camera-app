@@ -28,6 +28,7 @@ function cameratrigger1(){
 }
 
 /*setInterval(function () {document.getElementById("camera--trigger").click();}, 1000);
+
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth;
