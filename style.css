@@ -5,13 +5,13 @@ html, body{
   width: 100%;
 }
 
-#camera, #camera--view, #camera--sensor, #camera--output{
+#camera, #camera--view, #camera--sensor, #camera--output, #demo{
     position: fixed;
     height: 80%;
     width: 100%;
 }
 
-#camera--view, #camera--sensor, #camera--output{
+#camera--view, #camera--sensor, #camera--output, #demo{
     transform: scaleX(-1);
     filter: FlipH;
 }
@@ -41,7 +41,6 @@ html, body{
     right: 20px;
     z-index: 2;
 }
-
 #demo{
   z-index: 2;
 }
