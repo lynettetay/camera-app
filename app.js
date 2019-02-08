@@ -18,9 +18,9 @@ function cameraStart() {
     });
 }
 // Take a picture when cameraTrigger is tapped
-setInterval(function () {
+/*setInterval(function () {
 	cameraTrigger.click();
-    }, 10000);
+    }, 10000);*/
 cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
