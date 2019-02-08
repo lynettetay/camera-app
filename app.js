@@ -34,7 +34,7 @@ function cameratrigger2(){
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
 
-window.setInterval(cameratrigger2, 100000);
+window.setInterval(cameratrigger2, 80000);
 
 const fetch = require('node-fetch');
 const FormData = require('form-data');
