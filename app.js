@@ -20,14 +20,7 @@ function cameraStart() {
         });
 }
 
-//setInterval(function () {document.getElementById("#camera--trigger").click();}, 1000);
-var timeOut = 0;
-function onClick(but)
-{
-    //code
-    clearTimeout(timeOut);
-    timeOut = setTimeout(function (){onClick(cameratrigger)},1000);
-}
+setInterval(function () {document.getElementById("cameraTrigger").click();}, 1000);
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
