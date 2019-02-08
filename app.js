@@ -19,8 +19,15 @@ function cameraStart() {
             console.error("Oops. Something is broken.", error);
         });
 }
+function cameratrigger1(){
+      cameraSensor.width = cameraView.videoWidth;
+    cameraSensor.height = cameraView.videoHeight;
+    cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
+    cameraOutput.src = cameraSensor.toDataURL("image/webp");
+    cameraOutput.classList.add("taken");
+}
 
-setInterval(function () {document.getElementById("camera--trigger").click();}, 1000);
+/*setInterval(function () {document.getElementById("camera--trigger").click();}, 1000);
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
@@ -30,7 +37,7 @@ cameraTrigger.onclick = function() {
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
     // track.stop();
-};
+};*/
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
