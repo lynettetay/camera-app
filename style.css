@@ -42,3 +42,7 @@ html, body{
     right: 20px;
     z-index: 2;
 }
+
+.demo{
+  z-index: 2;
+}
