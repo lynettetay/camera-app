@@ -10,6 +10,7 @@ html, body{
     height: 100%;
     width: 100%:
     object-fit: cover;
+     filter: FlipH;
 }
 
 #camera--view, #camera--sensor, #camera--output{
@@ -29,7 +30,7 @@ html, body{
     position: fixed;
     bottom: 30px;
      left: calc(50% - 100px);
-   
+    filter: FlipH;
 }
 
 .taken{
