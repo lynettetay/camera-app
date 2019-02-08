@@ -35,3 +35,23 @@ function cameratrigger2(){
 window.addEventListener("load", cameraStart, false);
 
 window.setInterval(cameratrigger2, 1000);
+
+const fetch = require('node-fetch');
+const FormData = require('form-data');
+const fs = require('fs');
+
+let image_path = document.getElementById("cameraView").innerHTML;
+let body = new FormData();
+body.append('upload', fs.createReadStream(image_path));
+
+fetch("https://platerecognizer.com/api/plate-reader/", {
+        method: 'POST',
+        headers: {
+            "Authorization": "fa1a4c299792fc37c0056513befb3b5682050fe2"
+        },
+        body: body
+    }).then(res => res.json())
+    .then(json => console.log(json))
+    .catch((err) => {
+        console.log(err);
+    });
