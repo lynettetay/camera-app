@@ -20,7 +20,7 @@ function cameraStart() {
         });
 }
 
-window.setInterval(function(){cameratrigger1;}, 5000);
+setInterval(cameratrigger1,10000);
 
 function cameratrigger1(){
       cameraSensor.width = cameraView.videoWidth;
