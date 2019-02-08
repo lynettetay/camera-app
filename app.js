@@ -31,6 +31,7 @@ function cameratrigger2(){
     cameraOutput.classList.add("taken");
     // track.stop();
 }
-window.setInterval(cameratrigger2, 1000);
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
+
+window.setInterval(cameratrigger2, 1000);
