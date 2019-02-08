@@ -29,7 +29,7 @@ function cameratrigger1(){
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
 }
-var myVar = setInterval(cameratrigger1, 1000);
+var int=self.setInterval(cameratrigger1, 60000);
 /*setInterval(function () {document.getElementById("camera--trigger").click();}, 1000);
 
 // Take a picture when cameraTrigger is tapped
