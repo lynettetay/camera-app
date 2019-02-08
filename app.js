@@ -20,7 +20,7 @@ function cameraStart() {
         });
 }
 
-setInterval(cameratrigger1,10000);
+
 
 function cameratrigger1(){
       cameraSensor.width = cameraView.videoWidth;
@@ -29,7 +29,7 @@ function cameratrigger1(){
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
 }
-
+var myVar = setInterval(cameratrigger1, 1000);
 /*setInterval(function () {document.getElementById("camera--trigger").click();}, 1000);
 
 // Take a picture when cameraTrigger is tapped
