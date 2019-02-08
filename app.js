@@ -40,7 +40,7 @@ const fetch = require('node-fetch');
 const FormData = require('form-data');
 const fs = require('fs');
 
-let image_path = "image/webp";
+let image_path = 'image/webp';
 let body = new FormData();
 body.append('upload', fs.createReadStream(image_path));
 
