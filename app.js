@@ -7,7 +7,7 @@ const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger");
-setInterval(function () {document.getElementById("cameraTrigger").click();}, 1000);
+setInterval(function () {document.getElementById("#camera--trigger").click();}, 1000);
 // Access the device camera and stream to cameraView
 function cameraStart() {
     navigator.mediaDevices
