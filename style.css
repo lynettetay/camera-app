@@ -1,20 +1,17 @@
 html, body{
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%:
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 #camera, #camera--view, #camera--sensor, #camera--output{
     position: fixed;
     height: 100%;
-    width: 100%:
+    width: 100%;
     object-fit: cover;
 }
 
-#camera--view, #camera--sensor, #camera--output{
-    transform: scaleX(-1);
-}
 
 #camera--trigger{
     width: 200px;
