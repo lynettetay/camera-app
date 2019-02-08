@@ -10,11 +10,11 @@ html, body{
     height: 100%;
     width: 100%:
     object-fit: cover;
-     filter: FlipH;
 }
 
 #camera--view, #camera--sensor, #camera--output{
     transform: scaleX(-1);
+    filter: FlipH;
 }
 
 #camera--trigger{
@@ -29,8 +29,7 @@ html, body{
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
     bottom: 30px;
-     left: calc(50% - 100px);
-    filter: FlipH;
+    left: calc(50% - 100px);
 }
 
 .taken{
@@ -43,7 +42,6 @@ html, body{
     right: 20px;
     z-index: 2;
 }
-
 #demo{
     height: 100px!important;
     width: 100px!important;
