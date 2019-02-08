@@ -19,6 +19,9 @@ function cameraStart() {
             console.error("Oops. Something is broken.", error);
         });
 }
+
+window.setInterval(function(){cameratrigger1;}, 5000);
+
 function cameratrigger1(){
       cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
