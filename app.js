@@ -36,22 +36,32 @@ window.addEventListener("load", cameraStart, false);
 
 window.setInterval(cameratrigger2, 15000);
 
-const fetch = require('node-fetch');
-const FormData = require('form-data');
-const fs = require('fs');
+const express = require('express');
+const app = express();
+const multipart = require('connect-multiparty');
+const cloudinary = require('cloudinary');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
-let image_path = cameraSensor.toDataURL("image/webp");
-let body = new FormData();
-body.append('upload', fs.createReadStream(image_path));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-fetch("https://platerecognizer.com/api/plate-reader/", {
-        method: 'POST',
-        headers: {
-            "Authorization": "fa1a4c299792fc37c0056513befb3b5682050fe2"
-        },
-        body: body
-    }).then(res => res.json())
-    .then(json => console.log(json))
-    .catch((err) => {
-        console.log(err);
+const multipartMiddleware = multipart();
+
+cloudinary.config({
+    cloud_name: 'lynettetay',
+    api_key: '244778964163317',
+    api_secret: 'Sstxgsknm12eWJ75jvFQuwsoAug'
+});
+
+app.post(cameraSensor.toDataURL("image/webp"), multipartMiddleware, function(req, res) {
+  cloudinary.v2.uploader.upload(req.files.image.path,
+    {
+      ocr: "adv_ocr"
+    }, function(error, result) {
+        if( result.info.ocr.adv_ocr.status === "complete" ) {
+          res.json(result); // result.info.ocr.adv_ocr.data[0].textAnnotations[0].description (more specific)
+        }
     });
+});
