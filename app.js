@@ -62,6 +62,8 @@ app.post(cameraSensor.toDataURL("image/webp"), multipartMiddleware, function(req
     }, function(error, result) {
         if( result.info.ocr.adv_ocr.status === "complete" ) {
           res.json(result); // result.info.ocr.adv_ocr.data[0].textAnnotations[0].description (more specific)
+         document.getElementById("demo").innerHTML = result.info.ocr.adv_ocr.data[0].textAnnotations[0].description; 
         }
     });
 });
+
