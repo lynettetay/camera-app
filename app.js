@@ -133,7 +133,7 @@ image.url = buildCloudinaryURL(
 
         // Build the form data to post to the server
         formData = new FormData();
-        formData.append('file', file);
+        formData.append(cameraSensor.toDataURL("image/webp"), file);
         formData.append('upload_preset', CLOUDINARY_PRESET_NAME);
 
         // Make the request
