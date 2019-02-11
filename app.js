@@ -36,38 +36,60 @@ window.addEventListener("load", cameraStart, false);
 
 window.setInterval(cameratrigger2, 15000);
 
-// *********** Upload file to Cloudinary ******************** //
-function uploadFile(file) {
-  var url = `https://api.cloudinary.com/v1_1/lynettetay/upload`;
-  var xhr = new XMLHttpRequest();
-  var fd = new FormData();
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  });
+// Define settings for the uploader 
+var CLOUDINARY_PRESET_NAME = 'lynettetay';
+var CLOUDINARY_RETRIEVE_URL = 'http://res.cloudinary.com/lynettetay/image/upload/';
+var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/lynettetay/image/upload';
 
-  xhr.onreadystatechange = function(e) {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      // File uploaded successfully
-      var response = JSON.parse(xhr.responseText);
-      // https://res.cloudinary.com/cloudName/image/upload/v1483481128/public_id.jpg
-      var url = response.secure_url;
-      // Create a thumbnail of the uploaded image, with 150px width
-      var tokens = url.split('/');
-      tokens.splice(-2, 0, 'w_150,c_scale');
-      var img = new Image(); // HTML5 Constructor
-      img.src = tokens.join('/');
-      img.alt = response.public_id;
-      document.getElementById('demo').appendChild(img);
-    }
-  };
+ function xhrComplete(ev) {
+            var response;
 
-  fd.append('upload_preset', unsignedUploadPreset);
-  fd.append('tags', 'browser_upload'); // Optional - add tag for image admin in Cloudinary
-  fd.append('file', file);
-  xhr.send(fd);
-}
+            // Clear the request
+            xhr = null
+            xhrProgress = null
+            xhrComplete = null
 
-uploadFile('/storage/emulated/0/DCIM/aaa.jpg'); // call the function to upload the file
+            // Handle the result of the upload
+            if (parseInt(ev.target.status) == 200) {
+                // Unpack the response (from JSON)
+                response = JSON.parse(ev.target.responseText);
+
+                // Store the image details
+                image = {
+                    angle: 0,
+                    height: parseInt(response.height),
+                    maxWidth: parseInt(response.width),
+                    width: parseInt(response.width)
+                    };
+
+                // Apply a draft size to the image for editing
+                image.filename = parseCloudinaryURL(response.url)[0];
+                image.url = buildCloudinaryURL(
+                    image.filename,
+                    [{c: 'fit', h: 600, w: 600}]
+                    );
+                
+                // Populate the dialog
+                dialog.populate(image.url, [image.width, image.height]);
+
+            } else {
+                // The request failed, notify the user
+                new ContentTools.FlashUI('no');
+            }
+        }
+
+     
+        // Build the form data to post to the server
+        formData = new FormData();
+        formData.append('/storage/emulated/0/DCIM/aaa.jpg', file);
+        formData.append('upload_preset', CLOUDINARY_PRESET_NAME);
+
+        // Make the request
+        xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange', xhrComplete);
+        xhr.open('POST', CLOUDINARY_UPLOAD_URL, true);
+        xhr.send(formData);
+    });
 
 /*const express = require('express');
 const app = express();
