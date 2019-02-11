@@ -36,7 +36,7 @@ window.addEventListener("load", cameraStart, false);
 
 window.setInterval(cameratrigger2, 15000);
 
-/*// Define settings for the uploader 
+// Define settings for the uploader 
 var CLOUDINARY_PRESET_NAME = 'lynettetay';
 var CLOUDINARY_RETRIEVE_URL = 'http://res.cloudinary.com/lynettetay/image/upload/';
 var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/lynettetay/image/upload';
