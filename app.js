@@ -52,6 +52,7 @@ $.ajax({
         },
         success: function (response) {
                 console.log(response);
+            document.getElementById("demo").innerHTML = response;
         }
 });
 
