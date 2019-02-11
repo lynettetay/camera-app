@@ -55,7 +55,7 @@ cloudinary.config({
     api_secret: 'Sstxgsknm12eWJ75jvFQuwsoAug'
 });
 
-app.post('/storage/emulated/0/DCIM/aaa.jpg', multipartMiddleware, function(req, res) {
+app.post('file:///storage/emulated/0/DCIM/aaa.jpg', multipartMiddleware, function(req, res) {
   cloudinary.v2.uploader.upload(req.files.image.path,
     {
       ocr: "adv_ocr"
