@@ -89,7 +89,6 @@ var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/lynettetay/image/up
         xhr.addEventListener('readystatechange', xhrComplete);
         xhr.open('POST', CLOUDINARY_UPLOAD_URL, true);
         xhr.send(formData);
-    });
 
 /*const express = require('express');
 const app = express();
