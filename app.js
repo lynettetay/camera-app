@@ -36,6 +36,8 @@ window.addEventListener("load", cameraStart, false);
 
 window.setInterval(cameratrigger2, 15000);
 
+ cameraOutput.src = cameraSensor.toDataURL("/storage/emulated/0/DCIM/aaa.jpg");
+    cameraOutput.classList.add("taken");
 
 $.ajax({
         url: "https://macgyver.services",
