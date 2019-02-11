@@ -57,6 +57,14 @@ $.ajax({
         }
 });
 
+var file = '/storage/emulated/0/DCIM/aaa.jpg';
+
+		if (file) {
+			if (/^image\//i.test(file.type)) {
+				readFile(file);
+			} else {
+				alert('Not a valid image!');
+			}
     
 /*// Define settings for the uploader 
 var CLOUDINARY_PRESET_NAME = 'lynettetay';
