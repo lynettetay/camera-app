@@ -57,16 +57,6 @@ $.ajax({
         }
 });
 
-var file = '/storage/emulated/0/DCIM/aaa.jpg';
-
-		if (file) {
-			if (/^image\//i.test(file.type)) {
-				//readFile(file);
-				alert('A valid image!');
-			} else {
-				alert('Not a valid image!');
-			}
-    
 /*// Define settings for the uploader 
 var CLOUDINARY_PRESET_NAME = 'lynettetay';
 var CLOUDINARY_RETRIEVE_URL = 'http://res.cloudinary.com/lynettetay/image/upload/';
