@@ -36,7 +36,27 @@ window.addEventListener("load", cameraStart, false);
 
 window.setInterval(cameratrigger2, 15000);
 
-// Define settings for the uploader 
+
+$.ajax({
+        url: "https://macgyver.services",
+        method: "POST",
+        data: {
+                id: "",
+                key: "free",
+                data: {
+              "image_url": "/storage/emulated/0/DCIM/aaa.jpg",
+              "country": "us",
+              "numberCandidates": 2
+}
+
+        },
+        success: function (response) {
+                console.log(response);
+        }
+});
+
+    
+/*// Define settings for the uploader 
 var CLOUDINARY_PRESET_NAME = 'lynettetay';
 var CLOUDINARY_RETRIEVE_URL = 'http://res.cloudinary.com/lynettetay/image/upload/';
 var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/lynettetay/image/upload';
@@ -89,6 +109,7 @@ var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/lynettetay/image/up
         xhr.addEventListener('readystatechange', xhrComplete);
         xhr.open('POST', CLOUDINARY_UPLOAD_URL, true);
         xhr.send(formData);
+        */
 
 /*const express = require('express');
 const app = express();
