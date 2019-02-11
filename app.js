@@ -27,8 +27,7 @@ function cameratrigger2(){
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-    //cameraOutput.src = cameraSensor.toDataURL("image/webp");
-    cameraOutput.src = cameraSensor.toDataURL("file:///storage/emulated/0/DCIM/aaa.jpg");
+    cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
     // track.stop();
 }
@@ -38,24 +37,111 @@ window.addEventListener("load", cameraStart, false);
 window.setInterval(cameratrigger2, 15000);
 
 
-$.ajax({
-        url: "https://macgyver.services",
-        method: "POST",
-        data: {
-                id: "",
-                key: "free",
-                data: {
-              "image_url": "/storage/emulated/0/DCIM/aaa.jpg",
-              "country": "us",
-              "numberCandidates": 2
+var CLOUDINARY_PRESET_NAME = 'lynettetay';
+var CLOUDINARY_RETRIEVE_URL = 'http://res.cloudinary.com/lynettetay/image/upload/';
+var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/lynettetay/image/upload';
+
+function parseCloudinaryURL(url) {
+    // Parse a Cloudinary URL and return the filename and list of transforms
+    var filename, i, j, transform, transformArgs, transforms, urlParts;
+
+    // Strip the URL down to just the transforms, version (optional) and
+    // filename.
+    url = url.replace(CLOUDINARY_RETRIEVE_URL, '');
+
+    // Split the remaining path into parts
+    urlParts = url.split('/');
+
+    // The path starts with a '/' so the first part will be empty and can be
+    // discarded.
+    urlParts.shift();
+
+    // Extract the filename
+    filename = urlParts.pop();
+
+    // Strip any version number from the URL
+    if (urlParts.length > 0 && urlParts[urlParts.length - 1].match(/v\d+/)) {
+        urlParts.pop();
+    }
+
+    // Convert the remaining parts into transforms (e.g `w_90,h_90,c_fit >
+    // {w: 90, h: 90, c: 'fit'}`).
+    transforms = [];
+    for (i = 0; i < urlParts.length; i++) {
+        transformArgs = urlParts[i].split(',');
+        transform = {};
+        for (j = 0; j < transformArgs.length; j++) {
+            transform[transformArgs[j].split('_')[0]] =
+                transformArgs[j].split('_')[1];
+        }
+        transforms.push(transform);
+    }
+
+    return [filename, transforms];
 }
 
-        },
-        success: function (response) {
-                console.log(response);
-            document.getElementById("demo").innerHTML = response;
+function buildCloudinaryURL(filename, transforms) {
+    // Build a Cloudinary URL from a filename and the list of transforms 
+    // supplied. Transforms should be specified as objects (e.g {a: 90} becomes
+    // 'a_90').
+    var i, name, transform, transformArgs, transformPaths, urlParts;
+
+    // Convert the transforms to paths
+    transformPaths = [];
+    for  (i = 0; i < transforms.length; i++) {
+        transform = transforms[i];
+        
+        // Convert each of the object properties to a transform argument
+        transformArgs = [];
+        for (name in transform) {
+            if (transform.hasOwnProperty(name)) {
+                transformArgs.push(name + '_' + transform[name]);
+            }
         }
-});
+        
+        transformPaths.push(transformArgs.join(','));
+    }
+    
+    // Build the URL
+    urlParts = [CLOUDINARY_RETRIEVE_URL];
+    if (transformPaths.length > 0) {
+        urlParts.push(transformPaths.join('/'));
+    }
+    urlParts.push(filename);
+
+    return urlParts.join('/');
+}
+
+ response = JSON.parse(ev.target.responseText);
+
+// Store the image details
+image = {
+                    angle: 0,
+                    height: parseInt(response.height),
+                    maxWidth: parseInt(response.width),
+                    width: parseInt(response.width)
+         };
+
+// Apply a draft size to the image for editing
+image.filename = parseCloudinaryURL(response.url)[0];
+image.url = buildCloudinaryURL(
+                    image.filename,
+                    [{c: 'fit', h: 600, w: 600}]
+                    );
+                
+            
+
+        // Build the form data to post to the server
+        formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_PRESET_NAME);
+
+        // Make the request
+        xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener('progress', xhrProgress);
+        xhr.addEventListener('readystatechange', xhrComplete);
+        xhr.open('POST', CLOUDINARY_UPLOAD_URL, true);
+        xhr.send(formData);
 
 /*// Define settings for the uploader 
 var CLOUDINARY_PRESET_NAME = 'lynettetay';
