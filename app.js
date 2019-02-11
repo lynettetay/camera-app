@@ -61,7 +61,8 @@ var file = '/storage/emulated/0/DCIM/aaa.jpg';
 
 		if (file) {
 			if (/^image\//i.test(file.type)) {
-				readFile(file);
+				//readFile(file);
+				alert('A valid image!');
 			} else {
 				alert('Not a valid image!');
 			}
