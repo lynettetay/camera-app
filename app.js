@@ -56,7 +56,8 @@ cloudinary.config({
 });
 
 app.post('file:///storage/emulated/0/DCIM/aaa.jpg', multipartMiddleware, function(req, res) {
-  cloudinary.v2.uploader.upload(req.files.image.path,
+  //cloudinary.v2.uploader.upload(req.files.image.path,
+    cloudinary.v2.uploader.upload('file:///storage/emulated/0/DCIM/aaa.jpg',
     {
       ocr: "adv_ocr"
     }, function(error, result) {
