@@ -40,7 +40,7 @@ var CLOUDINARY_PRESET_NAME = 'lynettetay';
 var CLOUDINARY_RETRIEVE_URL = 'http://res.cloudinary.com/lynettetay/image/upload/';
 var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/lynettetay/image/upload';
 
- response = JSON.parse(ev.target.responseText);
+// response = JSON.parse(ev.target.responseText);
 
 // Store the image details
 image = {
@@ -60,14 +60,19 @@ image.url = buildCloudinaryURL(
             
 
         // Build the form data to post to the server
-        formData = new FormData();
-        formData.append(cameraSensor.toDataURL("image/webp"), file);
-        formData.append('upload_preset', CLOUDINARY_PRESET_NAME);
+       formData = new FormData();
+       formData.append(cameraSensor.toDataURL("image/webp"), file);
+       formData.append('upload_preset', CLOUDINARY_PRESET_NAME);
 
         // Make the request
-        xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
         xhr.open('POST', CLOUDINARY_UPLOAD_URL, true);
         xhr.send(formData);
+
+var respone = xhr.response;
+var data = JSON.parse(response);
+
+console.log(data["text"];
 
 /*// Define settings for the uploader 
 var CLOUDINARY_PRESET_NAME = 'lynettetay';
