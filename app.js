@@ -72,7 +72,7 @@ image.url = buildCloudinaryURL(
 var respone = xhr.response;
 var data = JSON.parse(response);
 
-console.log(data["text"];
+console.log(data["text"]);
 
 /*// Define settings for the uploader 
 var CLOUDINARY_PRESET_NAME = 'lynettetay';
