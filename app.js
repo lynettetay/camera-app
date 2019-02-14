@@ -43,7 +43,7 @@ var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/lynettetay/image/up
 // response = JSON.parse(ev.target.responseText);
 
 // Store the image details
-image = {
+/*image = {
                     angle: 0,
                     height: parseInt(response.height),
                     maxWidth: parseInt(response.width),
@@ -55,7 +55,7 @@ image.filename = parseCloudinaryURL(response.url)[0];
 image.url = buildCloudinaryURL(
                     image.filename,
                     [{c: 'fit', h: 600, w: 600}]
-                    );
+                    );*/
                 
             
 
