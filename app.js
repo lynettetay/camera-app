@@ -254,7 +254,7 @@ cloudinary.uploader.upload("lake.jpg", {tags : "basic_sample", public_id : "blue
 // Remote URL:
 // In the two following examples, the file is fetched from a remote URL and stored in Cloudinary.
 // This allows you to apply transformations and take advantage of Cloudinary's CDN layer.
-cloudinary.uploader.upload('http://res.cloudinary.com/demo/image/upload/couple.jpg', {tags : "basic_sample"}, function(err,image){
+cloudinary.uploader.upload('http://res.cloudinary.com/lynettetay/image/upload/couple.jpg', {tags : "basic_sample"}, function(err,image){
   console.log();
   console.log("** Remote Url");
   if (err){ console.warn(err);}
@@ -266,7 +266,7 @@ cloudinary.uploader.upload('http://res.cloudinary.com/demo/image/upload/couple.j
 
 // Here, the transformation is applied to the uploaded image BEFORE storing it on the cloud.
 // The original uploaded image is discarded.
-cloudinary.uploader.upload('http://res.cloudinary.com/demo/image/upload/couple.jpg',
+cloudinary.uploader.upload('http://res.cloudinary.com/lynettetay/image/upload/couple.jpg',
                            {"tags":"basic_sample","width":500,"height":500,"crop":"fit","effect":"saturation:-70"} ,
                            function(err,image){
                              console.log();
